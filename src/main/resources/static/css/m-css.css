@@ -1,0 +1,29 @@
+.m-upper-display{
+    z-index: 10;
+    left: 19%;
+    top: -51%;
+    background-color:black;
+}
+
+.m-text-ellipsis{
+    word-break: break-all;
+    overflow: hidden;  /** 隐藏超出的内容 **/
+    text-overflow: ellipsis;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 4; /** 显示的行数 **/
+}
+
+.m-text-ellipsis:hover{
+    height: auto;
+}
+
+.grid-title{
+    font-weight: bolder;
+    font-size: medium;
+}
+
+.pic:hover{
+    z-index: 99;
+    transform: scale(4);
+}

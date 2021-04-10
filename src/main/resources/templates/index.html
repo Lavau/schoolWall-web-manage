@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>恭喜你发现了.....</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <style>
+        .m-container{
+            margin-top: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="m-container">
+    <div class="ui container">
+        <h1 class="ui positive header message dialog" data-variation="very wide"
+            data-content="PHP才是世界上最好的编程语言！Java 与其相比就是DiDi。——Tao Bixin">恭喜你发现了这个彩蛋页！</h1>
+    </div>
+</div>
+
+<script>
+    $('.dialog').popup({inline: true });
+    $('.ui.dropdown').dropdown({on: 'hover'});
+</script>
+
+</body>
+</html>

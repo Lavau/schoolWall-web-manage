@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>其他项管理</title>
+    <!--    <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>-->
+    <script src="../static/js/jquery-3.5.0.min.js" th:src="@{/js/jquery-3.5.0.min.js}"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <!--    <link rel="stylesheet" href="../../static/css/semantic.min.css" th:href="@{/css/semantic.min.css}">-->
+</head>
+<body>
+<div class="ui attached inverted segment">
+    <div class="ui inverted secondary menu">
+        <h2 class="ui teal header item">管理系统</h2>
+
+        <a class="item" href="../published-info/published-info" th:href="@{/admin/publishedInfo}">
+            <i class="tasks icon"></i>审核
+        </a>
+        <a class="item active" href="../college/college.html" th:href="@{/admin/college}">
+            <i class="calendar alternate icon"></i>学院管理
+        </a>
+        <a class="item" href="../administrator/administrator.html" th:href="@{/admin/administrator}">
+            <i class="user md secret icon"></i>管理员管理
+        </a>
+
+        <div class="right menu">
+            <div class="ui dropdown item">
+                <div class="text" th:text="${session.username}">Leet</div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="#" th:href="@{/admin/login/out}">登出</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui container">
+    <div class="ui segment">
+        <!-- 添加结果反馈 -->
+        <div class="ui success message" th:unless="${#strings.isEmpty(msg)}">
+            <div class="header">提示：</div>
+            <p th:text="${msg}">恭喜，操作成功！</p>
+        </div>
+
+        <form action="#" method="post"  th:object="${college}" th:action="*{id}==null ? @{/admin/college} : @{/admin/college/{id}(id=*{id})} "  class="ui form">
+            <input type="hidden" name="id" th:value="*{id}">
+            <div class=" field">
+                <div class="ui left labeled input">
+                    <label class="ui teal basic label">学院编号</label>
+                    <input type="text" name="collegeId" required="true" placeholder="学院编号" th:value="*{collegeId}" >
+                </div>
+                <div class="ui left labeled input">
+                    <label class="ui teal basic label">学&nbsp;&nbsp;&nbsp;院&nbsp;&nbsp;名</label>
+                    <input type="text" name="collegeName" required="true" placeholder="学院名" th:value="*{collegeName}" >
+                </div>
+            </div>
+            <div class="ui right aligned container">
+                <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
+                <button class="ui teal submit button">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $('.dialog').popup({inline: true });
+    $('.ui.dropdown').dropdown({on: 'hover'});
+</script>
+
+</body>
+</html>

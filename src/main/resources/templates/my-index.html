@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <!--    <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>-->
+    <script src="../static/js/jquery-3.5.0.min.js" th:src="@{/js/jquery-3.5.0.min.js}"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <!--    <link rel="stylesheet" href="../../static/css/semantic.min.css" th:href="@{/css/semantic.min.css}">-->
+    <style type="text/css">
+        .m-center{
+            margin: 20% 30%;
+            height: 10%;
+        }
+        .m-left{
+            font-size: xx-large;
+            font-weight: bolder;
+            float: left;
+        }
+        .m-right{
+            font-size: x-large;
+            font-weight: bolder;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div class="ui attached inverted segment">
+    <div class="ui inverted secondary menu">
+        <h2 class="ui teal header item">管理系统</h2>
+
+        <a class="item" href="../published-info/published-info" th:href="@{/admin/publishedInfo}">
+            <i class="tasks icon"></i>审核
+        </a>
+        <a class="item" href="../college/college.html" th:href="@{/admin/college}">
+            <i class="calendar alternate icon"></i>学院管理
+        </a>
+        <a class="item" href="../administrator/administrator.html" th:href="@{/admin/administrator}">
+            <i class="user md secret icon"></i>管理员管理
+        </a>
+
+        <div class="right menu">
+            <div class="ui dropdown item">
+                <div class="text" th:text="${session.username}">Leet</div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="#" th:href="@{/admin/login/out}">登出</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui grid">
+    <div class="thirteen wide column">
+        <div class="m-center">
+            <div class="m-left">欢迎</div>
+            <div class="m-right" th:unless="${#strings.isEmpty(msg)}" th:text="${msg}">leet</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.dialog').popup({inline: true });
+    $('.ui.dropdown').dropdown({on: 'hover'});
+</script>
+
+</body>
+</html>
