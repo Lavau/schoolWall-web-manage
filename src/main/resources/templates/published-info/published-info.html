@@ -70,7 +70,7 @@
             </div>
             <div class="two wide column" th:text="${#dates.format(item.gmtCreate, 'yyyy-MM-dd HH:mm:ss')}">
                 2020-10-05 18:36:02</div>
-            <div class="two wide column" th:text="${item.reportTypeName + '、' + item.reportReason}"></div>
+            <div class="two wide column" th:text="${item.reportReason}"></div>
             <div class="two wide column">
                 <a class="ui button dialog" data-content="通过" th:attr="data-reportId=${item.reportId}" th:id="${item.id}"
                    th:unless="${item.typeId} == 6" onclick="passOrNot(this.id, 1)">

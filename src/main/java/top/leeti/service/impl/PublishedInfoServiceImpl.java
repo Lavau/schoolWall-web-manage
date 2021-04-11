@@ -72,7 +72,7 @@ public class PublishedInfoServiceImpl implements PublishedInfoService {
         Report report = reportMapper.getReportById(reportId);
 
         if (report == null) {
-            return "This report has been resolved!";
+            return "(●'◡'●) 这条举报已审核!辛苦了。。(●'◡'●)";
         }
 
         String contentOfReporterMsg = "您在" + TimeStampUtil.timeStamp(report.getGmtCreate())
@@ -88,8 +88,8 @@ public class PublishedInfoServiceImpl implements PublishedInfoService {
     private void sendPromulgatorMsg(String publishedInfoId, Integer mark, String reportId, Report report) {
         PublishedInfo publishedInfo = publishedInfoMapper.getPublishedInfoById(publishedInfoId);
 
-        String contentOfPromulgatorMsg = generatorContentOfPromulgatorMsg(report, publishedInfo);
-
+        String contentOfPromulgatorMsg = "您在 " + TimeStampUtil.timeStamp(publishedInfo.getGmtCreate()) + " 发布的内容在 "
+                + TimeStampUtil.timeStamp(report.getGmtCreate()) + " 被举报。原因：" + report.getReportReason() + "。我们已审核！";
         if (Integer.valueOf(0).equals(mark)) {
             contentOfPromulgatorMsg += "很抱歉，没有通过。该内容已删除。。。";
 
@@ -108,19 +108,6 @@ public class PublishedInfoServiceImpl implements PublishedInfoService {
         Msg promulgatorMsg = new Msg(UuidUtil.acquireUuid(),
                 publishedInfo.getPromulgatorId(), contentOfPromulgatorMsg, new Date(), true);
         msgMapper.insertMsg(promulgatorMsg);
-    }
-
-    private String generatorContentOfPromulgatorMsg(Report report, PublishedInfo publishedInfo) {
-        String contentOfPromulgatorMsg = "您在 " + TimeStampUtil.timeStamp(publishedInfo.getGmtCreate()) + " 发布的内容在 "
-                + TimeStampUtil.timeStamp(report.getGmtCreate()) + " 被举报。原因：";
-        if (report.getReportTypeId() != null) {
-            contentOfPromulgatorMsg += reportMapper.getReportTypeById(report.getReportTypeId()).getName();
-        }
-        if (report.getReportReason() != null && report.getReportReason().length() > 0) {
-            contentOfPromulgatorMsg += ("、" + report.getReportReason());
-        }
-        contentOfPromulgatorMsg += "。我们已审核！";
-        return contentOfPromulgatorMsg;
     }
 
     private void deletePublishedInfo(String publishedInfoId, String reportId) {

@@ -27,7 +27,6 @@ public class PublishedInfo implements Serializable {
     
     private String createTime;
     private String reportReason;
-    private String reportTypeName;
     private String reportId;
     protected List<String> pictureUrlList;
     

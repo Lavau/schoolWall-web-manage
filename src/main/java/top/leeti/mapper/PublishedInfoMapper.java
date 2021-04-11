@@ -10,9 +10,8 @@ public interface PublishedInfoMapper {
 
     @Select("SELECT pi._id AS id, _promulgator_id AS promulgatorId, _description AS description, _picture_num AS " +
             "pictureNum, r._gmt_create AS gmtCreate, r._report_reason AS reportReason, r._id AS reportId, " +
-            "rt._name AS reportTypeName, pi._picture_num AS pictureNum, pi._type_id AS typeId FROM _report AS r LEFT " +
-            "OUTER JOIN _published_info AS pi ON r._published_info_id = pi._id LEFT OUTER JOIN _report_type AS rt ON " +
-            "rt._id = r._report_type_id WHERE r._is_audit = 0 ORDER BY r._gmt_create ASC")
+            "pi._picture_num AS pictureNum, pi._type_id AS typeId FROM _report AS r LEFT OUTER JOIN _published_info " +
+            "AS pi ON r._published_info_id = pi._id WHERE r._is_audit = 0 ORDER BY r._gmt_create ASC")
     List<PublishedInfo> listReportedPublishedInfo();
 
     @Select("SELECT pi._id AS id, _promulgator_id AS promulgatorId, u._avatar_url AS avatarUrl, u._nickname AS " +

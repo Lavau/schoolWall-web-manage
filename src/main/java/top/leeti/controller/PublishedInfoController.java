@@ -31,8 +31,6 @@ public class PublishedInfoController {
     @ResponseBody
     @GetMapping("/admin/publishedInfo/passAjax")
     public String dealWithPassAjax(@RequestParam String id, @RequestParam Integer mark, @RequestParam String reportId) {
-
-
         String msg = publishedInfoService.dealWithPass(id, mark, reportId);
         return JSON.toJSONString(msg);
     }
